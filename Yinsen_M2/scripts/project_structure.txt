@@ -1,0 +1,57 @@
+# Project Structure
+jarvis/
+├── core/
+│   ├── agents/
+│   │   └── llm_agent.py
+│   ├── sensors/
+│   │   ├── vision/
+│   │   │   └── vision_sensor.py
+│   │   ├── audio/
+│   │   │   ├── audio_input.py
+│   │   │   └── audio_output.py
+│   │   ├── text/
+│   │   │   ├── text_input.py
+│   │   │   └── text_output.py
+│   │   └── environment/
+│   │       └── environment_sensor.py
+│   └── utils/
+│       └── helper_functions.py
+├── external_tools/
+│   ├── custom/
+│   │   ├── alarm_clock.py
+│   │   └── task_manager.py
+│   └── standard/
+│       ├── google_search.py
+│       └── youtube_search.py
+├── models/
+│   ├── vosk-model-small-en-us-0.15/  # Vosk speech recognition model
+│   └── README.md
+├── data/
+│   ├── sounds/
+│   ├── conversation_history.json.gz
+│   ├── chat_history.log
+│   └── README.md
+├── logs/
+│   └── jarvis.log
+├── config/
+│   └── config.yaml
+├── docker/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── scripts/
+│   ├── setup.sh
+│   ├── run.sh
+│   ├── create_venv.sh
+│   ├── run_in_venv.sh
+│   ├── download_vosk_model.sh
+│   ├── docker_build.sh
+│   ├── docker_run.sh
+│   └── project_structure.txt
+├── misc/
+│   ├── UI_test.py
+│   └── tutorial_custom_voice_assistant.py
+├── .env
+├── .gitignore
+├── main.py
+├── requirements.txt
+└── README.txt

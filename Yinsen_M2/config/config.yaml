@@ -1,0 +1,165 @@
+# Core system configuration
+agent:
+  general_main_instructions: ./core_engines/instructions/general_main.txt
+  general_helper_instructions: ./core_engines/instructions/general_helper.txt
+  
+  orchestrator:
+    name: "Mia"
+    version: "1.0"
+    debug: false
+    log_level: "WARNING"
+    history_file: "data/orchestrator_conversation_history.json.gz"
+    type: "openai"
+    model: "gpt-4o-mini"
+    instructions: ./core_engines/instructions/orchestrator.txt
+                
+    #If the user asks about creating, viewing, updating, or managing tasks, respond with a brief acknowledgement and set the [invoke_another_agent_flag] to True and [invoke_agent_name] to 'task_manager'.\
+    temperature: 0.7
+    top_p: 0.9
+    max_tokens: 1000
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+  
+  finance_manager:  
+    name: "Flock"
+    version: "1.0"
+    debug: false
+    log_level: "WARNING"
+    history_file: "data/finance_manager_conversation_history.json.gz"
+    type: "openai"
+    model: "gpt-4o-mini"
+    instructions: ./core_engines/instructions/main_agents/finance_manager.txt
+
+    temperature: 0.5
+    top_p: 0.9
+    max_tokens: 1000
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+  study_manager:  
+    name: "Sara"
+    version: "1.0"
+    debug: false
+    log_level: "WARNING"
+    history_file: "data/study_manager_conversation_history.json.gz"
+    type: "openai"
+    model: "gpt-4o-mini"
+    instructions: ./core_engines/instructions/main_agents/study_manager.txt
+
+    temperature: 0.5
+    top_p: 0.9
+    max_tokens: 1000
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+  health_manager:  
+    name: "Doctor Strange"
+    version: "1.0"
+    debug: false
+    log_level: "WARNING"
+    history_file: "data/health_manager_conversation_history.json.gz"
+    type: "openai"
+    model: "gpt-4o-mini"
+    instructions: ./core_engines/instructions/main_agents/health_manager.txt
+
+    temperature: 0.5
+    top_p: 0.9
+    max_tokens: 1000
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+  helper_agents:
+    visualizer_agent:
+      name: "Visualizer Agent"
+      version: "1.0"
+      debug: false
+      log_level: "WARNING"
+      history_file: "data/visualizer_agent_conversation_history.json.gz"
+      type: "openai"
+      model: "gpt-4o-mini"
+      instructions: ./core_engines/instructions/helper_agents/visualizer_agent.txt
+
+      temperature: 0.5
+      top_p: 0.9
+      max_tokens: 1000
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+    
+    tool_handler_agent:
+      name: "Tool Handler Agent"
+      version: "1.0"
+      debug: false
+      log_level: "WARNING"
+      history_file: "data/tool_handler_agent_conversation_history.json.gz"
+      type: "openai"
+      model: "gpt-4o-mini"
+      instructions: ./core_engines/instructions/helper_agents/tool_handler_agent.txt
+
+      temperature: 0.5
+      top_p: 0.9
+      max_tokens: 1000
+      frequency_penalty: 0.0
+      presence_penalty: 0.0      
+
+# Sensor configurations
+sensors:
+  
+  text:
+    enabled: True
+    input_mode: "cli"  # cli or gui
+    input_prompt: "> "
+    history_size: 1000
+    log_file: "data/chat_history.log"
+  
+  audio:
+    output:
+      enabled: False
+      language: 'en'    # Language code (e.g., 'en', 'fr', 'es')
+      slow: false       # Slower pronunciation for clarity
+      rate: 300  # Words per minute for TTS
+      volume: 1.0  # TTS volume (0.0 to 1.0)
+      voice: null  # Uses system default voice
+    
+    input:
+      enabled: False
+      device_index: null  # Auto-detect
+      sample_rate: 16000
+      chunk_size: 4096
+      channels: 1
+      wake_word: "friday"
+      wake_word_enabled: true
+      silence_threshold: 300
+      silence_duration: 1.0
+      # OpenAI Whisper API config
+      openai_api_key: "YOUR_API_KEY_HERE"  # OR set as env variable
+      whisper_model: "whisper-1"  # OpenAI's model name, not the local model size
+      language: "en"
+  
+  vision:
+    enabled: false  # Set to false as not yet implemented
+    camera_id: 0
+    frame_rate: 30
+  
+  environment:
+    enabled: false  # Set to false as not yet implemented
+    update_interval: 60  # seconds
+
+# External Tools Configuration
+tools:
+  alarm:
+    default_sound: "data/sounds/alarm.wav"
+    snooze_duration: 300  # seconds
+  task_manager:
+    database_path: "data/tasks.db"
+    #backup_interval: 86400  # daily backup in seconds
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/chat_history.log"
+
+# Calender and Logs configuration
+calender_and_logs:
+  calender_logs_path: "./data/calender_logs.json"
+  notification_logs_path: "./data/notification_logs.json"

@@ -1,0 +1,35 @@
+### Example for Email Tool - Read Emails:
+Input:  
+"main_agent_response: Read my emails from the last 3 days. current_datetime: 02/04/2025 13:00"  
+
+Response:  
+
+{
+  "tool": "email",
+  "instructions": {
+    "action": "read",
+    "until_date": "29/03/2025",
+  }
+}
+
+Another example:
+
+Input:  
+"main_agent_response: Get my last 10 emails. current_datetime: 02/04/2025 13:00"  
+
+Response:  
+
+{
+  "tool": "email",
+  "instructions": {
+    "action": "read",
+    "last_n_emails": 10,
+  }
+}
+
+---
+
+2. for read emails:
+  - if "until_date" is not provided, then use the  date of the 3 days ago as the default value.
+  - if "last_n_emails" is not provided, then use 10 as the default value.
+  - if both "until_date" and "last_n_emails" are not provided, then use the 'until_date' as the default mode of operation.

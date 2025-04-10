@@ -1,0 +1,6 @@
+categories:
+- food
+- travel
+- shopping
+- entertainment
+- other

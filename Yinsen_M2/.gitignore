@@ -1,0 +1,52 @@
+.qodo
+
+# Environment variables and secrets
+.env
+.env.*
+*.env
+!example.env
+
+# Virtual environments
+venv/
+env/
+.venv/
+.venv_yinsen_m1/
+.venv_jarvis/
+.virtualenv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+logs/
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+.directory
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Local data that shouldn't be committed
+data/
+!data/.gitkeep
+models/
+!models/.gitkeep
